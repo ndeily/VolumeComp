@@ -1,52 +1,57 @@
-# VolumeComp
-Python based program for comparing volume objects (or volume images) for geometric similarity. 
+# Overview
+A python based tool for analyzing the geometric similarity of two 3D objects. Input objects can be in the form of a mesh (.stl, .obj, .ply etc.), dicom series (folder containing .dcm files), or volume image (.tiff, .vti, .slc etc.)
 
-VolumeComp takes 2 volume objects in the form of a mesh (.stl, .obj, .ply etc.), dicom series (folder containing .dcm files), or volume image (.tiff, .vti, .slc etc.), and displays a visual comparison for error isolation.
+**Process:**  
+**1.** Objects are loaded and mesh surfaces are constructed for volume-image inputs  
+**2.** Objects are aligned using point set registration  
+**3.** Heatmaps are generated and displayed in the error isolation tool (see examples below) 
 
 # Setup
-The following external packages are required: **numpy**,**scipy**, **matplotlib**, **VTK**, **vtkplotter**, **pycpd**, **Open3D**, and **point_cloud_utils**
+The following external packages are required:  
+**numpy**  
+**scipy**  
+**matplotlib**  
+**VTK**  
+**vtkplotter**  
+**pycpd**  
+**Open3D**  
+**point_cloud_utils**  
 
 # Usage
-Invoke with the following arguments:
+Invoke `volumeComp.py` with the following arguments:
 
-`-f1`: (Required) The filepath to the source object (object comparison is performd on)
+`-f1`: (Required) The filepath to the source object (object comparison is performed on)  
+`-f2`: (Required) The filepath to the target object (original object that the source object is compared to)  
+Note: For a dicom series, the filepath should point to the directory containing the .dcm files
 
-`-f2`: (Required) The filepath to the target object (original object that the source object is compared to)
-
-Note: For dicom series, filepaths should point to the directory containing the series
-
-`-t1`: (Optional) Threshold values for feature extraction for source object if a volume image or dicom series is specified 
-
-`-t12`: (Optional) Threshold values for feature extraction for target object if a volume image or dicom series is specified 
-
-Ex: `-t1 100, 400`
-
-Ex: `-t2 -200, 100, -500, 200` (dual thresholding)
+`-t1`: (Optional) Threshold values for feature extraction for source object if a volume image or dicom series is specified   
+`-t2`: (Optional) Threshold values for feature extraction for target object if a volume image or dicom series is specified   
+Note: Dual thresholding is supported
 
 
-## Examples:
-Compare a modified bone mesh object to its original model:
+# Examples
+Compare a modified bone mesh with hollowed-out internal regions to its original model:  
 ```
 python volumeComp.py -f1 "./Examples/bone_modified.stl" -f2 "./Examples/bone_tgt.stl" 
 ```
 <p align="center">
-![demo3](https://user-images.githubusercontent.com/54589801/81141083-5ff77600-8f20-11ea-9ae5-e1df37984010.gif)
+    <img  src="https://user-images.githubusercontent.com/54589801/81141083-5ff77600-8f20-11ea-9ae5-e1df37984010.gif">
 </p>
 
-Compare CT scans of a 3D printed trachea to its original 3D model:
+
+Compare CT scans of a 3D printed trachea to its original 3D model:  
 ```
 python volumeComp.py -f1 "./Examples/trachea_scans" -f2 "./Examples/trachea.obj" -t1 -720 100
 ```
 <p align="center">
-![demo1](https://user-images.githubusercontent.com/54589801/81140773-7a7d1f80-8f1f-11ea-80b7-5ddaa2d5594f.gif)
+    <img  src="https://user-images.githubusercontent.com/54589801/81140773-7a7d1f80-8f1f-11ea-80b7-5ddaa2d5594f.gif">
 </p>
 
+# Automatic Error Detection (Beta)
 
-## Automatic Error Detection (Beta)
+Optionally add a maximum error tolerance using the `-et` argument to automatically detect and highlight error regions
 
-Optionally add a maximum error tolerance using the `-et` argument to automatically detect and highlight error regions in the source mesh or missing regions
-
-Example:
+**Example:**
 ```
-python volumeComp.py -f1 "./Examples/trachea_scans" -f2 "./Examples/trachea.obj" -t1 -720 100
+python volumeComp.py -f1 "./Examples/trachea_scans" -f2 "./Examples/trachea.obj" -t1 -720 100 -et 2.15
 ```
