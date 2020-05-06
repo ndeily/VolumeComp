@@ -35,7 +35,7 @@ Compare a modified bone mesh with hollowed-out internal regions to its original 
 python volumeComp.py -f1 "./Examples/bone_modified.stl" -f2 "./Examples/bone_tgt.stl" 
 ```
 <p align="center">
-    <img  src="https://user-images.githubusercontent.com/54589801/81141083-5ff77600-8f20-11ea-9ae5-e1df37984010.gif">
+    <img  src="https://user-images.githubusercontent.com/54589801/81150485-d00ff700-8f34-11ea-822a-f9733ffaa609.gif">
 </p>
 
 
@@ -44,7 +44,7 @@ Compare CT scans of a 3D printed trachea to its original 3D model:
 python volumeComp.py -f1 "./Examples/trachea_scans" -f2 "./Examples/trachea.obj" -t1 -720 100
 ```
 <p align="center">
-    <img  src="https://user-images.githubusercontent.com/54589801/81140773-7a7d1f80-8f1f-11ea-80b7-5ddaa2d5594f.gif">
+    <img  src="https://user-images.githubusercontent.com/54589801/81150437-bec6ea80-8f34-11ea-8c13-f50a579e10a2.gif">
 </p>
 
 # Automatic Error Detection (Beta)
