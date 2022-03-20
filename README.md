@@ -1,5 +1,5 @@
 # Overview
-A python based tool for analyzing the geometric similarity of two 3D objects. Input objects can be in the form of a mesh (.stl, .obj, .ply etc.), dicom series (folder containing .dcm files), or volume image (.tiff, .vti, .slc etc.)
+A python based tool for analyzing the geometric similarity of two 3D objects. Input objects can be in the form of a mesh (.stl, .obj, .ply etc.), dicom series (folder containing .dcm files), or volume image (.tiff, .vti, .slc etc.). [See Demo Vid](https://www.youtube.com/watch?v=oujyCpQzGkU).
 
 **Process:**  
 **1.** Objects are loaded and mesh surfaces are constructed for volume-image inputs  
